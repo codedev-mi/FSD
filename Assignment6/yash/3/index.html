@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>student pass fail</title>
+
+    <style>
+      
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    background: #f4f7fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    
+  }
+
+  #inputDiv {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+    width: 90%;
+    margin: 10vh auto;
+    padding: 2.5rem 2rem;
+    text-align: center;
+  }
+
+  h1, h2 {
+    margin-bottom: 1rem;
+    color: #2c3e50;
+  }
+
+  input[type="text"] {
+    width: calc(33% - 1rem);
+    margin: 0.5rem 0.5rem 1.5rem 0.5rem;
+    padding: 0.6rem 0.75rem;
+    font-size: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    transition: border-color 0.3s ease;
+  }
+
+  input[type="text"]:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 6px #a8d0ff;
+  }
+
+  input[type="submit"] {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.6rem;
+    margin: 0.7rem 0.7rem 1.7rem 0.7rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.25s ease;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #217dbb;
+  }
+
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+    max-height: 250px;
+    overflow-y: auto;
+    margin-bottom: 2rem;
+    /* border: 1px solid #ddd; */
+    border-radius: 6px;
+    background: #fafafa;
+  }
+
+  ul li {
+    padding: 0.8rem 1rem;
+    /* border-bottom: 1px solid #eee; */
+    font-weight: 500;
+    color: #555;
+    text-align: left;
+  }
+
+  ul li:last-child {
+    border-bottom: none;
+  }
+
+  
+      
+    </style>
+</head>
+<body>
+       <div id="inputDiv">
+
+      <h1>Enter the details of student </h1>
+      
+      
+      <input type="text" id="studentname" name="studentname" placeholder="enter name">
+      <input type="text" id="rollno" name="rollno" placeholder="rollno">
+      <input type="text" id="marks" name="marks" placeholder="marks">
+      
+      <input type="submit" id="submitBtn" value="add student">
+      
+      <h2>All students</h2>
+      <ul id="studentList">
+          
+    </ul>
+    
+    <input type="submit" id="showBtn" value="show all students">
+    <h1>passed students</h1>
+    <input type="submit" id="passedStudentsBtn" value="Show All Passed Students">
+    <ul id="passedStudentList">
+    
+</div>
+
+
+   <script>
+    
+
+    class Student {
+        constructor(name, rollno, marks) {
+            this.name = name;
+            this.rollno = rollno;
+            this.marks = Number(marks) ;
+        }
+    }
+       
+       
+    let students = [];
+
+    document.getElementById('submitBtn').addEventListener('click',()=>{
+        let studentname=document.getElementById('studentname').value.trim()
+        let rollno=document.getElementById('rollno').value.trim()
+        let marks=document.getElementById('marks').value.trim()
+          if (studentname === '' || rollno === '' || marks === '') {
+                alert('Please fill in all fields!');
+                return;
+            }
+            if (isNaN(marks)) {
+                alert('Please enter a valid number for marks.');
+                return;
+            }
+        
+          // new student using the constructor
+            let student = new Student(studentname, rollno, marks);
+            students.push(student);
+
+            // console.log(students);
+
+       
+            document.getElementById('studentname').value = '';
+            document.getElementById('rollno').value = '';
+            document.getElementById('marks').value = '';
+        
+    })
+    
+   //all students button
+    document.getElementById('showBtn').addEventListener('click',()=>{
+         let studentsList=students.map(student=>{
+           let li=`<li> Name: ${student.name} RollNo: ${student.rollno} Marks: ${student.marks}</li>`
+        //    console.log(li);
+           return li
+            });
+   
+       document.getElementById('studentList').innerHTML=studentsList       
+
+                
+        })
+
+
+
+
+        //passed students btn
+    document.getElementById('passedStudentsBtn').addEventListener('click',()=>{
+        
+        
+           let studentsPassed= students.filter(student=>student.marks>=40);
+           console.log(studentsPassed)
+
+           let studentsPassedList=studentsPassed.map(student=>{
+           let li=`<li> Name: ${student.name} RollNo: ${student.rollno} Marks: ${student.marks}</li>`
+           console.log(li);
+           return li
+           })
+           
+   
+       document.getElementById('passedStudentList').innerHTML=studentsPassedList.join(" ");
+
+                
+        })
+       
+        
+    
+    
+
+
+   </script>
+</body>
+</html>

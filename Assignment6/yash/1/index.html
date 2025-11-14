@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Greet User</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f8ff;
+      padding: 20px;
+      max-width: 400px;
+      margin: 40px auto;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 10px;
+      background-color: #4caf50;
+      color: white;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #greeting {
+      margin-top: 25px;
+      font-size: 1.2rem;
+      color: #222;
+      background: #e6f7ff;
+      padding: 15px;
+      border-radius: 6px;
+      border: 1px solid #b3d9ff;
+      min-height: 40px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Greet User</h1>
+
+  <label for="name">Name:</label>
+  <input type="text" id="name" placeholder="Enter your name" />
+
+  <label for="city">City:</label>
+  <input type="text" id="city" placeholder="Enter your city (optional)" />
+
+  <button id="greetBtn">Greet Me</button>
+
+  <div id="greeting"></div>
+
+  <script>
+    const greetUser = (name, city = "your city") => {
+      let message = `Hello, ${name}! Welcome from ${city}.`;
+      return message;
+    };
+
+    const button = document.getElementById("greetBtn");
+    const greetingDiv = document.getElementById("greeting");
+
+    button.addEventListener("click", () => {
+      const nameInput = document.getElementById("name").value.trim();
+      const cityInput = document.getElementById("city").value.trim();
+
+      if (!nameInput) {
+        greetingDiv.textContent = "Please enter your name.";
+        greetingDiv.style.color = "red";
+        return;
+      }
+      const greetingMsg = greetUser(nameInput, cityInput || undefined);
+      greetingDiv.textContent = greetingMsg;
+      greetingDiv.style.color = "#222";
+    });
+  </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>name and city</title>
+
+    <style>
+form{
+    width: 50%;
+    margin: 0 auto;
+    color: #000;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 700;
+    padding: 34px;
+    border: 2px solid black;
+
+    border-radius: 6px;
+    box-shadow:inset;
+    background-color: #e4e4e4;
+}
+label{
+   
+    padding: 23px;
+    font-size: larger;
+}
+input{
+    padding: 8px;
+    margin: 5px;
+
+}
+#submit{
+    position: relative;
+    width: 100%;
+    height: 40px;
+    font-size: larger;
+    font-family: 'Courier New', Courier, monospace;
+
+}
+
+h2{
+    text-align: center;
+    width: 100%;
+    color: #212121;
+}
+
+#displayHeading{
+    text-align: center;
+}
+
+
+
+    </style>
+
+
+</head>
+
+<body>
+
+    <h2>*** Enter your Details ***</h2>
+    <form action="" id="inform">
+
+        <label for="name">Enter your name: </label><input type="text" id="nameTextBox"><br>
+        <label for="city">Enter your city: </label><input type="text" id="cityTextBox"><br>
+        <input type="submit" id="submit">
+    </form>
+
+    <h1 id="displayHeading"></h1>
+
+    <script>
+
+        function greetUser(name, city = "your city") {
+            let greeting = `Hello, ${name} from ${city}!`;
+            return greeting;
+            document.getElementById("displayHeading").innerHTML = greeting;
+           
+        }
+
+
+        document.getElementById("inform").addEventListener("submit", (event) => {
+            event.preventDefault();
+            let name = document.getElementById('nameTextBox').value;
+            let city = document.getElementById('cityTextBox').value;
+            greetUser(name, city)
+        })
+
+    </script>
+</body>
+
+</html> -->

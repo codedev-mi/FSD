@@ -1,0 +1,22 @@
+.container{
+ 
+    justify-content: center;
+    text-align: center;
+}
+
+
+#title{
+ width:100%;
+}
+#myButton{
+
+    padding: 12px 15px;
+    font-weight: bolder;
+   
+}
+
+button:hover{
+    background-color:whitesmoke;
+    box-shadow: inset;
+    
+}

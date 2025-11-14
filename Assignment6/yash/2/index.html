@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gst calculation</title>
+
+    <style>
+      *{
+         margin: 0%;
+         padding: 0%;
+      }
+
+      body{
+         background-color: #212121;
+         
+      }
+      
+      #inputDiv{
+        
+         width: 50%;
+       
+        
+         background-color: rgb(196, 196, 183);
+         box-sizing: border-box;
+         box-shadow: inset;
+         margin: 20vh auto;
+        
+     
+          align-items: center;
+          border: 8px solid rgb(48, 48, 48);
+         text-align: center;
+
+    }
+
+    h1{
+      padding: 34px;
+    }
+    input{
+      margin: 8px 3px;
+      padding: 10px 12px;
+    }
+    #submitBtn:hover{
+      background-color: #4CAF50;
+      color: white;
+      font-weight: bolder;
+      outline-offset: 6PX;
+      border: #212121;
+      
+      
+   }
+   #productPrices:hover{
+       border: #4CAF50;
+      outline-offset: 3PX;
+ 
+    }
+
+ 
+
+ 
+  
+    </style>
+</head>
+<body>
+   <div id="inputDiv">
+
+      <h1>Total Bill Calculator (with 18% GST) </h1>
+      
+      <label for="productPrices">Enter the product prices (comma seperated)</label><br>
+      <input type="text" id="productPrices" name="productPrices" placeholder="Enter product prices">
+      <input type="submit" id="submitBtn" value="Calculate Total">
+      
+      
+      <h1 id="output"></h1>
+   </div>
+
+
+
+     <script>
+        function gstCalculate(...inputPrices){
+            let total=0;
+
+            for(const input of inputPrices){
+               console.log(input)
+               
+               const gst=((input)/100)*18;
+             
+               
+               total+=(Number(input)+Number(gst));
+               console.log(total);
+                
+            }
+            
+           return total;
+
+        }
+
+
+       const button=document.getElementById("submitBtn");
+       button.addEventListener("click",()=>{
+         const input=document.getElementById("productPrices").value;
+         const inputPrices=input.split(",");
+         if(inputPrices==0){
+            document.getElementById("output").innerHTML= `enter the amount to calculate the bill`;
+        
+         }
+         else{
+            
+            const totalBill=gstCalculate(...inputPrices);
+            document.getElementById("output").innerHTML= `Total Bill: ₹${totalBill}`;
+         }
+          
+       })
+ 
+     </script>
+</body>
+</html>

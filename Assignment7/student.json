@@ -1,0 +1,32 @@
+[
+    {
+        "roll_no": 1,
+        "name": "Durgesh Patil",
+        "branch": "MCA",
+        "marks":80
+    },
+    {
+        "roll_no": 2,
+        "name": "Akshay Marathe",
+        "branch": "MCA",
+        "marks":85
+    },
+    {
+        "roll_no": 3,
+        "name": "Dimpal Alokar",
+        "branch": "MCA",
+        "marks":85
+    },
+    {
+        "roll_no": 4,
+        "name": "Harshada Patil",
+        "branch": "MCA",
+        "marks":90
+    },
+    {
+        "roll_no": 5,
+        "name": "Mansi Marathe",
+        "branch": "MCA",
+        "marks":95
+    }
+]
