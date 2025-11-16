@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Result</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 25px 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px #bbb;
+            width: 350px;
+            text-align: center;
+        }
+
+        input {
+            width: 90%;
+            padding: 8px;
+            margin: 7px 0;
+            border-radius: 5px;
+            border: 1px solid #aaa;
+            font-size: 15px;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin: 5px 0;
+            width: 90%;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #3d8b40;
+        }
+
+        #all, #passed {
+            margin-top: 15px;
+            padding: 10px;
+            background: #fafafa;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            text-align: left;
+            min-height: 30px;
+        }
+
+        h2, h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h2>Enter Student Details</h2>
+
+    <input type="text" id="name" placeholder="Enter Name">
+    <input type="number" id="roll" placeholder="Enter Roll No">
+    <input type="number" id="marks" placeholder="Enter Marks">
+
+    <button onclick="addStudent()">Add Student</button>
+    <button onclick="showPassed()">Show Passed Students</button>
+
+    <h3>All Students:</h3>
+    <div id="all"></div>
+
+    <h3>Passed Students:</h3>
+    <div id="passed"></div>
+</div>
+
+<script>
+    class Student {
+        constructor(name, rollNo, marks) {
+            this.name = name;
+            this.rollNo = rollNo;
+            this.marks = marks;
+        }
+        isPassed() {
+            return this.marks > 40;
+        }
+    }
+
+    const students = [];
+
+    function addStudent() {
+        const name = document.getElementById("name").value;
+        const roll = document.getElementById("roll").value;
+        const marks = Number(document.getElementById("marks").value);
+
+        if (!name || !roll || !marks) {
+            alert("Please fill all fields!");
+            return;
+        }
+
+        const s = new Student(name, roll, marks);
+        students.push(s);
+
+        document.getElementById("all").innerHTML += 
+            `<div>${s.name} (Roll: ${s.rollNo}) - Marks: ${s.marks}</div>`;
+
+        document.getElementById("name").value = "";
+        document.getElementById("roll").value = "";
+        document.getElementById("marks").value = "";
+    }
+
+    function showPassed() {
+        const passed = students.filter(s => s.isPassed());
+
+        document.getElementById("passed").innerHTML = "";
+        passed.forEach(s => {
+            document.getElementById("passed").innerHTML += 
+                `<div>${s.name} (Roll: ${s.rollNo}) - Marks: ${s.marks}</div>`;
+        });
+    }
+</script>
+
+</body>
+</html>
